@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("java-library")
     id("maven-publish")
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "org.devofblue"
@@ -17,11 +18,19 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:3.5.15")
+    }
+}
+
 dependencies {
-    api("org.springframework.boot:spring-boot-starter-security:3.5.15")
-    api("org.springframework.boot:spring-boot-starter-web:3.5.15")
-    api("org.springframework.boot:spring-boot-starter-validation:3.5.15")
+    api("org.springframework.boot:spring-boot-starter-security")
+    api("org.springframework.boot:spring-boot-starter-web")
+    api("org.springframework.boot:spring-boot-starter-validation")
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -38,4 +47,8 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+tasks.withType<GenerateModuleMetadata> {
+    suppressedValidationErrors.add("dependencies-without-versions")
 }
