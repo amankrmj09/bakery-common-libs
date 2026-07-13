@@ -1,6 +1,5 @@
 package org.devofblue.common.event;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -12,12 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentEvent {
-    private UUID paymentId;
-    private UUID orderId;
+public class UserEvent {
     private UUID userId;
-    private String customerEmail;
-    private String status; // SUCCESS, FAILED, REFUNDED
-    private BigDecimal amount;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String action; // REGISTERED, UPDATED, DELETED
     private LocalDateTime timestamp;
 }

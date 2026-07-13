@@ -12,12 +12,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentEvent {
-    private UUID paymentId;
+public class PaymentRequestedEvent {
     private UUID orderId;
     private UUID userId;
-    private String customerEmail;
-    private String status; // SUCCESS, FAILED, REFUNDED
+    private String paymentMethod;
     private BigDecimal amount;
+    private String currencyCode;
+    private String cardLastFour;
+    private String cardBrand;
+    private String cardType;
+    private String digitalWalletProvider;
+    private String bankName;
+    private String notes;
     private LocalDateTime timestamp;
 }

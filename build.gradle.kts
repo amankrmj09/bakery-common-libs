@@ -5,8 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "org.devofblue"
-version = "1.0-SNAPSHOT"
+description = "Shared DTOs and Common Utilities for Bakery Microservices"
 
 java {
     toolchain {

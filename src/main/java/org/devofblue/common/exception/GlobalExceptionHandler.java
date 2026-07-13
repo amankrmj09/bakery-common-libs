@@ -20,10 +20,10 @@ public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         logger.error("Resource not found: {}", ex.getMessage());
 
-        ErrorResponse error = new ErrorResponse(
+        ErrorResponseDto error = new ErrorResponseDto(
             "RESOURCE_NOT_FOUND",
             ex.getMessage(),
             LocalDateTime.now(),
@@ -34,10 +34,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DuplicateResourceException.class)
-    public ResponseEntity<ErrorResponse> handleDuplicateResourceException(DuplicateResourceException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleDuplicateResourceException(DuplicateResourceException ex, WebRequest request) {
         logger.error("Duplicate resource error: {}", ex.getMessage());
         
-        ErrorResponse error = new ErrorResponse(
+        ErrorResponseDto error = new ErrorResponseDto(
             "DUPLICATE_RESOURCE",
             ex.getMessage(),
             LocalDateTime.now(),
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
         logger.error("Validation error: {}", ex.getMessage());
 
         Map<String, String> validationErrors = new HashMap<>();
@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
             validationErrors.put(fieldName, errorMessage);
         });
 
-        ErrorResponse error = new ErrorResponse(
+        ErrorResponseDto error = new ErrorResponseDto(
             "VALIDATION_ERROR",
             "Invalid input data",
             LocalDateTime.now(),
@@ -70,10 +70,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
         logger.error("Illegal argument: {}", ex.getMessage());
 
-        ErrorResponse error = new ErrorResponse(
+        ErrorResponseDto error = new ErrorResponseDto(
             "INVALID_ARGUMENT",
             ex.getMessage(),
             LocalDateTime.now(),
@@ -84,10 +84,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, WebRequest request) {
+    public ResponseEntity<ErrorResponseDto> handleGenericException(Exception ex, WebRequest request) {
         logger.error("Unexpected error: {}", ex.getMessage(), ex);
 
-        ErrorResponse error = new ErrorResponse(
+        ErrorResponseDto error = new ErrorResponseDto(
             "INTERNAL_ERROR",
             "An unexpected error occurred",
             LocalDateTime.now(),
