@@ -33,6 +33,7 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-cache")
     api("com.github.ben-manes.caffeine:caffeine")
     compileOnly("org.springframework.cloud:spring-cloud-starter-openfeign")
+    compileOnly("org.springframework.kafka:spring-kafka")
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
