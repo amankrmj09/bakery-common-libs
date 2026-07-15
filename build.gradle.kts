@@ -46,6 +46,22 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
+            pom {
+                name.set("Bakery Common Libs")
+                description.set("Shared DTOs and Common Utilities for Bakery Microservices")
+                url.set("https://github.com/amankrmj09/bakery-common-libs")
+                licenses {
+                    license {
+                        name.set("The MIT License")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("amankrmj09")
+                    }
+                }
+            }
         }
     }
     repositories {
