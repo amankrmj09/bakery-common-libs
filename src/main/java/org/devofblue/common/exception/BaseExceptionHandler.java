@@ -105,6 +105,14 @@ public abstract class BaseExceptionHandler {
         );
     }
 
+    @ExceptionHandler(FeignClientException.class)
+    public ResponseEntity<ErrorResponseDto> handleFeignClientException(FeignClientException ex, WebRequest request) {
+        logger.error("Downstream service client error: {}", ex.getMessage());
+        return ResponseEntity.status(ex.getHttpStatus()).body(
+            new ErrorResponseDto("EXTERNAL_CLIENT_ERROR", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
+        );
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleGenericException(Exception ex, WebRequest request) {
         logger.error("Unexpected error: {}", ex.getMessage(), ex);
