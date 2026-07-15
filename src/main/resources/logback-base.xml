@@ -6,7 +6,7 @@
     
     <property name="HOSTNAME" value="${HOSTNAME:-unknown}"/>
     
-    <property name="LOG_FILE_PATH" value="/var/log/bakery/${springAppName}" />
+    <property name="LOG_FILE_PATH" value="${LOG_PATH:-logs/${springAppName}}" />
     <property name="LOG_FILE_NAME" value="${LOG_FILE_PATH}/${springAppName}-${HOSTNAME}.log" />
     <property name="LOG_FILE_PATTERN" value="${LOG_FILE_PATH}/${springAppName}-${HOSTNAME}-%d{yyyy-MM-dd}.%i.log" />
 
