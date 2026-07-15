@@ -17,9 +17,12 @@ repositories {
     mavenCentral()
 }
 
+extra["springCloudVersion"] = "2025.0.3"
+
 dependencyManagement {
     imports {
         mavenBom("org.springframework.boot:spring-boot-dependencies:3.5.15")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
     }
 }
 
@@ -29,6 +32,7 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-validation")
     api("org.springframework.boot:spring-boot-starter-cache")
     api("com.github.ben-manes.caffeine:caffeine")
+    compileOnly("org.springframework.cloud:spring-cloud-starter-openfeign")
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
