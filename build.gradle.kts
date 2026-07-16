@@ -27,17 +27,29 @@ dependencyManagement {
 }
 
 dependencies {
-    api("org.springframework.boot:spring-boot-starter-security")
+    // 2. Spring Boot Core & Web
     api("org.springframework.boot:spring-boot-starter-web")
     api("org.springframework.boot:spring-boot-starter-validation")
     api("org.springframework.boot:spring-boot-starter-cache")
-    api("com.github.ben-manes.caffeine:caffeine")
-    compileOnly("org.springframework.cloud:spring-cloud-starter-openfeign")
-    compileOnly("org.springframework.kafka:spring-kafka")
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
+
+    // 3. Spring Cloud & Discovery
+    compileOnly("org.springframework.cloud:spring-cloud-starter-openfeign")
+
+    // 5. Messaging & Event Driven
+    compileOnly("org.springframework.kafka:spring-kafka")
+
+    // 6. Security
+    api("org.springframework.boot:spring-boot-starter-security")
+
+    // 7. Third-Party Utilities (Jackson, AWS, etc.)
+    api("com.github.ben-manes.caffeine:caffeine")
+
+    // 8. Tooling & Lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
+    // 9. Testing
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
