@@ -1,11 +1,11 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.messaging;
 
-public class StockOperationRequestDto {
+public class StockOperationRequestPayload {
     private Integer quantity;
 
-    public StockOperationRequestDto() {}
+    public StockOperationRequestPayload() {}
 
-    public StockOperationRequestDto(Integer quantity) {
+    public StockOperationRequestPayload(Integer quantity) {
         this.quantity = quantity;
     }
 

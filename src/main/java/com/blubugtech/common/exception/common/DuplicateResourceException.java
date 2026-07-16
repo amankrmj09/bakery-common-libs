@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.common;
 
 public class DuplicateResourceException extends RuntimeException {
     public DuplicateResourceException(String message) {

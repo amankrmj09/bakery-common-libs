@@ -1,15 +1,15 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.feign;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class ProductValidationDto {
+public class ProductValidation {
     private UUID productId;
     private Boolean available;
     private Integer stockQuantity;
     private BigDecimal currentPrice;
 
-    public ProductValidationDto() {}
+    public ProductValidation() {}
 
     public UUID getProductId() {
         return productId;

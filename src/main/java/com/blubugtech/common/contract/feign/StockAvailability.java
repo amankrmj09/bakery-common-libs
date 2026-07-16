@@ -1,10 +1,10 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.feign;
 
-public class StockAvailabilityDto {
+public class StockAvailability {
     private Boolean sufficient;
     private Integer availableQuantity;
 
-    public StockAvailabilityDto() {}
+    public StockAvailability() {}
 
     public Boolean getSufficient() {
         return sufficient;

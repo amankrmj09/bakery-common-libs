@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,16 +12,22 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import com.blubugtech.common.exception.common.DuplicateResourceException;
+import com.blubugtech.common.exception.common.ResourceNotFoundException;
+import com.blubugtech.common.exception.common.FeignClientException;
+import com.blubugtech.common.exception.security.InvalidTokenException;
+import com.blubugtech.common.exception.security.UnauthenticatedException;
+import com.blubugtech.common.exception.security.UnauthorizedAccessException;
 
 public abstract class BaseExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseExceptionHandler.class);
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         logger.error("Resource not found: {}", ex.getMessage());
 
-        ErrorResponseDto error = new ErrorResponseDto(
+        ErrorResponse error = new ErrorResponse(
             "RESOURCE_NOT_FOUND",
             ex.getMessage(),
             LocalDateTime.now(),
@@ -32,10 +38,10 @@ public abstract class BaseExceptionHandler {
     }
 
     @ExceptionHandler(DuplicateResourceException.class)
-    public ResponseEntity<ErrorResponseDto> handleDuplicateResourceException(DuplicateResourceException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleDuplicateResourceException(DuplicateResourceException ex, WebRequest request) {
         logger.error("Duplicate resource error: {}", ex.getMessage());
         
-        ErrorResponseDto error = new ErrorResponseDto(
+        ErrorResponse error = new ErrorResponse(
             "DUPLICATE_RESOURCE",
             ex.getMessage(),
             LocalDateTime.now(),
@@ -46,7 +52,7 @@ public abstract class BaseExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponseDto> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
         logger.error("Validation error: {}", ex.getMessage());
 
         Map<String, String> validationErrors = new HashMap<>();
@@ -56,7 +62,7 @@ public abstract class BaseExceptionHandler {
             validationErrors.put(fieldName, errorMessage);
         });
 
-        ErrorResponseDto error = new ErrorResponseDto(
+        ErrorResponse error = new ErrorResponse(
             "VALIDATION_ERROR",
             "Invalid input data",
             LocalDateTime.now(),
@@ -68,10 +74,10 @@ public abstract class BaseExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
         logger.error("Illegal argument: {}", ex.getMessage());
 
-        ErrorResponseDto error = new ErrorResponseDto(
+        ErrorResponse error = new ErrorResponse(
             "INVALID_ARGUMENT",
             ex.getMessage(),
             LocalDateTime.now(),
@@ -82,42 +88,42 @@ public abstract class BaseExceptionHandler {
     }
 
     @ExceptionHandler(UnauthenticatedException.class)
-    public ResponseEntity<ErrorResponseDto> handleUnauthenticatedException(UnauthenticatedException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleUnauthenticatedException(UnauthenticatedException ex, WebRequest request) {
         logger.error("Unauthenticated access: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
-            new ErrorResponseDto("UNAUTHENTICATED", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
+            new ErrorResponse("UNAUTHENTICATED", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
         );
     }
 
     @ExceptionHandler(InvalidTokenException.class)
-    public ResponseEntity<ErrorResponseDto> handleInvalidTokenException(InvalidTokenException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleInvalidTokenException(InvalidTokenException ex, WebRequest request) {
         logger.error("Invalid token: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
-            new ErrorResponseDto("INVALID_TOKEN", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
+            new ErrorResponse("INVALID_TOKEN", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
         );
     }
 
     @ExceptionHandler(UnauthorizedAccessException.class)
-    public ResponseEntity<ErrorResponseDto> handleUnauthorizedAccessException(UnauthorizedAccessException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleUnauthorizedAccessException(UnauthorizedAccessException ex, WebRequest request) {
         logger.error("Unauthorized access: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
-            new ErrorResponseDto("UNAUTHORIZED", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
+            new ErrorResponse("UNAUTHORIZED", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
         );
     }
 
     @ExceptionHandler(FeignClientException.class)
-    public ResponseEntity<ErrorResponseDto> handleFeignClientException(FeignClientException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleFeignClientException(FeignClientException ex, WebRequest request) {
         logger.error("Downstream service client error: {}", ex.getMessage());
         return ResponseEntity.status(ex.getHttpStatus()).body(
-            new ErrorResponseDto("EXTERNAL_CLIENT_ERROR", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
+            new ErrorResponse("EXTERNAL_CLIENT_ERROR", ex.getMessage(), LocalDateTime.now(), request.getDescription(false))
         );
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDto> handleGenericException(Exception ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, WebRequest request) {
         logger.error("Unexpected error: {}", ex.getMessage(), ex);
 
-        ErrorResponseDto error = new ErrorResponseDto(
+        ErrorResponse error = new ErrorResponse(
             "INTERNAL_ERROR",
             "An unexpected error occurred",
             LocalDateTime.now(),

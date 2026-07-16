@@ -1,13 +1,13 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.messaging;
 
 import java.math.BigDecimal;
 
-public class RevenuePayloadDto {
+public class RevenuePayload {
     private BigDecimal amount;
 
-    public RevenuePayloadDto() {}
+    public RevenuePayload() {}
 
-    public RevenuePayloadDto(BigDecimal amount) {
+    public RevenuePayload(BigDecimal amount) {
         this.amount = amount;
     }
 

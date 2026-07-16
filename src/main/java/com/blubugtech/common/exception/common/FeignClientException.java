@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.common;
 
 import org.springframework.http.HttpStatus;
 

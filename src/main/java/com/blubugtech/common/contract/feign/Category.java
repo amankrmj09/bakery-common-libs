@@ -1,9 +1,9 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.feign;
 
-public class CategoryDto {
+public class Category {
     private String name;
 
-    public CategoryDto() {}
+    public Category() {}
 
     public String getName() {
         return name;

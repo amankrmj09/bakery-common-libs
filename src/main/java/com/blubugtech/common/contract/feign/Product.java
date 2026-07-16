@@ -1,21 +1,21 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.feign;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-public class ProductDto {
+public class Product {
     private UUID id;
     private String name;
     private String description;
     private String sku;
-    private CategoryDto category;
+    private Category category;
     private BigDecimal effectivePrice;
     private String primaryImageUrl;
     private List<String> mediaUrls;
     private Integer preparationTimeMinutes;
 
-    public ProductDto() {}
+    public Product() {}
 
     public UUID getId() {
         return id;
@@ -49,11 +49,11 @@ public class ProductDto {
         this.sku = sku;
     }
 
-    public CategoryDto getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryDto category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

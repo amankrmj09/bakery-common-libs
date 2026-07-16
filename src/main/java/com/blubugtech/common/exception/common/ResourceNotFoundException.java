@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.common;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

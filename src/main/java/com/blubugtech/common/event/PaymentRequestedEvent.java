@@ -1,28 +1,14 @@
 package com.blubugtech.common.event;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.blubugtech.common.contract.messaging.PaymentRequestedPayload;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class PaymentRequestedEvent {
-    private UUID orderId;
-    private UUID userId;
-    private String paymentMethod;
-    private BigDecimal amount;
-    private String currencyCode;
-    private String cardLastFour;
-    private String cardBrand;
-    private String cardType;
-    private String digitalWalletProvider;
-    private String bankName;
-    private String notes;
-    private LocalDateTime timestamp;
+public class PaymentRequestedEvent extends BaseEvent<PaymentRequestedPayload> {
 }

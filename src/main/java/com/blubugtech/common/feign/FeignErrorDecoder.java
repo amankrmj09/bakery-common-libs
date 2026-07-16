@@ -2,7 +2,7 @@ package com.blubugtech.common.feign;
 
 import feign.Response;
 import feign.codec.ErrorDecoder;
-import com.blubugtech.common.exception.FeignClientException;
+import com.blubugtech.common.exception.common.FeignClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

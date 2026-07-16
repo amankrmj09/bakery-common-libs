@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.security;
 
 public class UnauthorizedAccessException extends RuntimeException {
     public UnauthorizedAccessException(String message) {

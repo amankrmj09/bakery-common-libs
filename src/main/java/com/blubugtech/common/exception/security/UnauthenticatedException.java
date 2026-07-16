@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.security;
 
 public class UnauthenticatedException extends RuntimeException {
     public UnauthenticatedException(String message) {

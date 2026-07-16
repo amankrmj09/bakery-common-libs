@@ -1,4 +1,4 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.feign;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class HealthResponseDto {
+public class HealthResponse {
     private String status;
     private String service;
     private LocalDateTime timestamp;
     private Object details;
 
-    public HealthResponseDto(String status, String service) {
+    public HealthResponse(String status, String service) {
         this.status = status;
         this.service = service;
         this.timestamp = LocalDateTime.now();

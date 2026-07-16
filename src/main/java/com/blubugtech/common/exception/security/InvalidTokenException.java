@@ -1,4 +1,4 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.security;
 
 public class InvalidTokenException extends RuntimeException {
     public InvalidTokenException(String message) {

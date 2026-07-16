@@ -1,13 +1,13 @@
-package com.blubugtech.common.dto;
+package com.blubugtech.common.contract.messaging;
 
 import java.util.UUID;
 
-public class StockOperationResponseDto {
+public class StockOperationResponsePayload {
     private UUID productId;
     private Boolean success;
     private String message;
 
-    public StockOperationResponseDto() {}
+    public StockOperationResponsePayload() {}
 
     public UUID getProductId() {
         return productId;

@@ -1,23 +1,14 @@
 package com.blubugtech.common.event;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.blubugtech.common.contract.messaging.OrderPayload;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class OrderEvent {
-    private UUID orderId;
-    private String orderNumber;
-    private UUID userId;
-    private String customerEmail;
-    private BigDecimal totalAmount;
-    private String status; // PENDING, CONFIRMED, CANCELLED, etc.
-    private LocalDateTime timestamp;
+public class OrderEvent extends BaseEvent<OrderPayload> {
 }

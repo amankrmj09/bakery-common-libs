@@ -1,9 +1,9 @@
-package com.blubugtech.common.exception;
+package com.blubugtech.common.exception.handler;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class ErrorResponseDto {
+public class ErrorResponse {
     private String code;
     private String message;
     private LocalDateTime timestamp;
@@ -11,14 +11,14 @@ public class ErrorResponseDto {
     private Map<String, String> validationErrors;
     private Map<String, Object> details;
 
-    public ErrorResponseDto(String code, String message, LocalDateTime timestamp, String path) {
+    public ErrorResponse(String code, String message, LocalDateTime timestamp, String path) {
         this.code = code;
         this.message = message;
         this.timestamp = timestamp;
         this.path = path;
     }
 
-    public ErrorResponseDto(String code, String message, LocalDateTime timestamp, String path, Map<String, String> validationErrors) {
+    public ErrorResponse(String code, String message, LocalDateTime timestamp, String path, Map<String, String> validationErrors) {
         this.code = code;
         this.message = message;
         this.timestamp = timestamp;
@@ -26,7 +26,7 @@ public class ErrorResponseDto {
         this.validationErrors = validationErrors;
     }
 
-    public ErrorResponseDto(String code, String message, LocalDateTime timestamp, String path, Map<String, String> validationErrors, Map<String, Object> details) {
+    public ErrorResponse(String code, String message, LocalDateTime timestamp, String path, Map<String, String> validationErrors, Map<String, Object> details) {
         this.code = code;
         this.message = message;
         this.timestamp = timestamp;
