@@ -28,6 +28,8 @@ dependencyManagement {
 
 dependencies {
     // 2. Spring Boot Core & Web
+    api("org.springframework.boot:spring-boot-starter-actuator")
+    api("io.micrometer:micrometer-registry-prometheus")
     api("org.springframework.boot:spring-boot-starter-web")
     api("org.springframework.boot:spring-boot-starter-validation")
     api("org.springframework.boot:spring-boot-starter-cache")
