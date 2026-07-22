@@ -19,5 +19,7 @@ public class PaymentPayload {
     private String customerEmail;
     private String status; // SUCCESS, FAILED, REFUNDED
     private BigDecimal amount;
+    private BigDecimal refundAmount;
+    private String refundReason;
     private LocalDateTime timestamp;
 }
