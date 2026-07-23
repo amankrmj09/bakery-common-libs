@@ -30,6 +30,11 @@ public class FeignClientInterceptor implements RequestInterceptor {
             if (!requestTemplate.headers().containsKey("X-User-Role")) {
                 requestTemplate.header("X-User-Role", "SYSTEM");
             }
+            
+            String userEmail = request.getHeader("X-User-Email");
+            if (userEmail != null && !requestTemplate.headers().containsKey("X-User-Email")) {
+                requestTemplate.header("X-User-Email", userEmail);
+            }
         } else {
             if (!requestTemplate.headers().containsKey("X-User-Id")) {
                 requestTemplate.header("X-User-Id", "system-user");
