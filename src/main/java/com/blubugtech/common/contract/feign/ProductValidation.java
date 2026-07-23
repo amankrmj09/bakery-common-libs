@@ -8,6 +8,8 @@ public class ProductValidation {
     private Boolean available;
     private Integer stockQuantity;
     private BigDecimal currentPrice;
+    private String taxClass;
+    private BigDecimal taxRate;
 
     public ProductValidation() {}
 
@@ -41,5 +43,21 @@ public class ProductValidation {
 
     public void setCurrentPrice(BigDecimal currentPrice) {
         this.currentPrice = currentPrice;
+    }
+
+    public String getTaxClass() {
+        return taxClass;
+    }
+
+    public void setTaxClass(String taxClass) {
+        this.taxClass = taxClass;
+    }
+
+    public BigDecimal getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(BigDecimal taxRate) {
+        this.taxRate = taxRate;
     }
 }

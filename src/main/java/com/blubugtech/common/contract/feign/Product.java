@@ -14,6 +14,8 @@ public class Product {
     private String primaryImageUrl;
     private List<String> mediaUrls;
     private Integer preparationTimeMinutes;
+    private String taxClass;
+    private BigDecimal taxRate;
 
     public Product() {}
 
@@ -87,5 +89,21 @@ public class Product {
 
     public void setPreparationTimeMinutes(Integer preparationTimeMinutes) {
         this.preparationTimeMinutes = preparationTimeMinutes;
+    }
+
+    public String getTaxClass() {
+        return taxClass;
+    }
+
+    public void setTaxClass(String taxClass) {
+        this.taxClass = taxClass;
+    }
+
+    public BigDecimal getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(BigDecimal taxRate) {
+        this.taxRate = taxRate;
     }
 }
